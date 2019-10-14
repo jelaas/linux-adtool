@@ -95,7 +95,7 @@ void userdelete(char **argv){
 
 	user=argv[0];
 
-        dn=ad_search("name", user);
+        dn=ad_search("sAMAccountName", user);
         if(ad_get_error_num()!=AD_SUCCESS) {
                 fprintf(stderr, "error: %s\n", ad_get_error());
                 exit(1);
@@ -195,7 +195,7 @@ void usermove(char **argv) {
 	username=argv[0];
 	new_container=argv[1];
 
-        dn=ad_search("name", username);
+        dn=ad_search("sAMAccountName", username);
         if(ad_get_error_num()!=AD_SUCCESS) {
                 fprintf(stderr, "error: %s\n", ad_get_error());
                 exit(1);
@@ -306,7 +306,7 @@ void groupadduser(char **argv) {
                 exit(1);
         }
 
-        user_dn=ad_search("name", user);
+        user_dn=ad_search("sAMAccountName", user);
         if(ad_get_error_num()!=AD_SUCCESS) {
                 fprintf(stderr, "error: %s\n", ad_get_error());
                 exit(1);
@@ -327,13 +327,13 @@ void groupremoveuser(char **argv) {
 	group=argv[0];
 	user=argv[1];
 
-        group_dn=ad_search("name", group);
+        group_dn=ad_search("cn", group);
         if(ad_get_error_num()!=AD_SUCCESS) {
                 fprintf(stderr, "error: %s\n", ad_get_error());
                 exit(1);
         }
 
-        user_dn=ad_search("name", user);
+        user_dn=ad_search("sAMAccountName", user);
         if(ad_get_error_num()!=AD_SUCCESS) {
                 fprintf(stderr, "error: %s\n", ad_get_error());
                 exit(1);
@@ -354,7 +354,7 @@ void groupsubtreeremove(char **argv) {
 	container=argv[0];
 	user=argv[1];
 
-        user_dn=ad_search("name", user);
+        user_dn=ad_search("sAMAccountName", user);
         if(ad_get_error_num()!=AD_SUCCESS) {
                 fprintf(stderr, "error: %s\n", ad_get_error());
                 exit(1);
