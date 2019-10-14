@@ -13,7 +13,7 @@
 
 #define ADTOOL_VERSION "1.3.3"
 
-#include <active_directory.h>
+#include "active_directory.h"
 
 #include <stdio.h>
 #include <stdlib.h>

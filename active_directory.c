@@ -148,8 +148,8 @@ LDAP *ad_login() {
 	if(uri!=NULL) free(uri);
 	if(binddn!=NULL) free(binddn);
 	if(bindpw!=NULL) {
-		memset(bindpw, 0, sizeof(bindpw));
 		free(bindpw);
+		bindpw = 0;
 	}
 
 	return ds;
@@ -903,8 +903,8 @@ int ad_group_subtree_remove_user(char *container_dn, char *user_dn) {
 		if(ad_group_remove_user(group_dn, user_dn)!=AD_SUCCESS) {
 			snprintf(ad_error_msg, MAX_ERR_LENGTH, 
 				"Error in ad_group_subtree_remove_user"
-				"\nwhen removing %s from %s:\n%s", 
-				user_dn, group_dn, ad_error_msg);
+				"\nwhen removing %s from %s:\n", 
+				user_dn, group_dn);
 			return ad_error_code;
 		}
 		entry=ldap_next_entry(ds, entry);
